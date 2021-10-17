@@ -1,7 +1,8 @@
 name: pro_drawer
 description: A pro level animated and customizable drawer for your flutter apps.
+version: 0.0.1
+homepage: https://github.com/shaon2016/ProDrawer
 
-version: 1.0.0+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
