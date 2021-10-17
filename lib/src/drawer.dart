@@ -5,11 +5,15 @@ class ProDrawer extends StatefulWidget {
   final Color? drawerBackgroundColor;
   final Widget? drawerHeader;
   final Widget drawerBody;
-
   final Widget? footer;
 
   final Widget initialPage;
   final double xOffset;
+
+  final Duration drawerAnimationDuration;
+
+  final Decoration? pageContainerDecorationWhileDrawerOpen;
+  final double? pageContainerCircularRadiusWhileDrawerOpen;
 
   const ProDrawer({
     Key? key,
@@ -19,6 +23,9 @@ class ProDrawer extends StatefulWidget {
     required this.xOffset,
     this.drawerBackgroundColor,
     this.footer,
+    required this.drawerAnimationDuration,
+    this.pageContainerDecorationWhileDrawerOpen,
+    this.pageContainerCircularRadiusWhileDrawerOpen,
   }) : super(key: key);
 
   @override
@@ -84,7 +91,8 @@ class _ProDrawerState extends State<ProDrawer> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (widget.drawerHeader != null) FittedBox(child: widget.drawerHeader!),
+                if (widget.drawerHeader != null)
+                  FittedBox(child: widget.drawerHeader!),
                 Expanded(
                   child: SingleChildScrollView(
                     child: widget.drawerBody,
@@ -127,19 +135,19 @@ class _ProDrawerState extends State<ProDrawer> {
             const delta = 1;
 
             // we will open drawer when user interact with the first 1/4 of the screen
-            if (details.delta.dx > delta && details.position.dx < (width / 10))
+            if (details.delta.dx > delta &&
+                details.position.dx < (width / 10)) {
               _openDrawer();
-            // close the drawer
-            // right to left delta is -minus
-
-            else if (details.delta.dx < -delta &&
-                (details.position.dx > (width / 2))) _closeDrawer();
+            } else if (details.delta.dx < -delta &&
+                (details.position.dx > (width / 2))) {
+              _closeDrawer();
+            }
 
             _isDragging = false;
           },
           child: Center(
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 250),
+              duration: widget.drawerAnimationDuration,
               transform: Matrix4.translationValues(_xOffset, _yOffset, 0)
                 ..scale(_scaleFactor),
               child: _getPages(),
@@ -154,22 +162,27 @@ class _ProDrawerState extends State<ProDrawer> {
     Decoration? decoration;
 
     if (_isDrawerOpen) {
-      decoration = BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-              color: Color(0x1e000000),
-              offset: Offset(-10, 6),
-              blurRadius: 60,
-              spreadRadius: 0)
-        ],
-      );
+      decoration = widget.pageContainerDecorationWhileDrawerOpen ??
+          const BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  color: Color(0x1e000000),
+                  offset: Offset(-10, 6),
+                  blurRadius: 60,
+                  spreadRadius: 0)
+            ],
+          );
     }
     return AbsorbPointer(
       absorbing: _isDrawerOpen,
       child: Container(
         decoration: decoration,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(_isDrawerOpen == true ? 15 : 0),
+          borderRadius: BorderRadius.circular(
+            _isDrawerOpen
+                ? widget.pageContainerCircularRadiusWhileDrawerOpen ?? 15
+                : 0,
+          ),
           child: _body,
         ),
       ),
