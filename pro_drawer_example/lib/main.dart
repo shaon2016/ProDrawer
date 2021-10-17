@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pro_drawer_example/test.dart';
+import 'package:pro_drawer_example/landing_screen.dart';
+import 'package:pro_drawer_example/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -13,11 +15,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(title: 'Flutter App Drawer Demo', home: Test()
-
+    return const MaterialApp(
+      title: 'Flutter App Drawer Demo',
+      home: SplashScreen(),
     );
   }
 }

@@ -5,5 +5,5 @@ class DrawerMenu {
   final String title;
   Widget? screen;
 
-  DrawerMenu({required this.icon, required this.title, this.screen});
+   DrawerMenu({required this.icon, required this.title, this.screen});
 }
