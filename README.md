@@ -1,6 +1,6 @@
 # pro_drawer
 
-![Pro Drawer](https://raw.githubusercontent.com/shaon2016/pro_drawer/master/media/pro_drawer.gif "Pro Drawer")
+![Pro Drawer](media/pro_drawer.gif)
 
 A pro level animated and customizable drawer for your flutter apps.
 
