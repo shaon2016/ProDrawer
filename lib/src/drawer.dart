@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'drawer_item.dart';
+
+import '../pro_drawer.dart';
 
 class ProDrawer extends StatefulWidget {
   final Color? drawerBackgroundColor;
@@ -64,17 +65,17 @@ class _ProDrawerState extends State<ProDrawer> {
   }
 
   _openDrawer() => setState(() {
-        _xOffset = widget.xOffset;
-        _scaleFactor = 0.6;
-        _isDrawerOpen = true;
-      });
+    _xOffset = widget.xOffset;
+    _scaleFactor = 0.6;
+    _isDrawerOpen = true;
+  });
 
   _closeDrawer() => setState(() {
-        _xOffset = 0;
-        _yOffset = 0;
-        _scaleFactor = 1.0;
-        _isDrawerOpen = false;
-      });
+    _xOffset = 0;
+    _yOffset = 0;
+    _scaleFactor = 1.0;
+    _isDrawerOpen = false;
+  });
 
   toggle() {
     _isDrawerOpen ? _closeDrawer() : _openDrawer();
@@ -92,7 +93,7 @@ class _ProDrawerState extends State<ProDrawer> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (widget.drawerHeader != null)
-                  FittedBox(child: widget.drawerHeader!),
+                  Visibility(child: SizedBox(child: widget.drawerHeader!, width: double.infinity,), visible: _isDrawerOpen,),
                 Expanded(
                   child: SingleChildScrollView(
                     child: widget.drawerBody,
@@ -189,8 +190,8 @@ class _ProDrawerState extends State<ProDrawer> {
     );
   }
 
-  setPage(DrawerItem item) => setState(() {
-        toggle();
-        _body = item.screen!;
-      });
+  setPage(DrawerMenu item) => setState(() {
+    toggle();
+    _body = item.screen!;
+  });
 }

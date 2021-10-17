@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class DrawerItem {
+class DrawerMenu {
   final IconData icon;
   final String title;
   Widget? screen;
 
-   DrawerItem({required this.icon, required this.title, this.screen});
+   DrawerMenu({required this.icon, required this.title, this.screen});
 }
