@@ -21,7 +21,7 @@ class JustForYouListItem extends StatelessWidget {
         children: [
           SizedBox(
             width: double.infinity,
-            height: 175.h,
+            height: 150.h,
             child: CachedNetworkImage(
               imageUrl: "http://via.placeholder.com/350x150",
               placeholder: (context, url) => Center(
@@ -44,14 +44,6 @@ class JustForYouListItem extends StatelessWidget {
               letterSpacing: -0.333,
             ),
           ),
-          SizedBox(
-            height: 7.h,
-          ),
-          priceUI(),
-          SizedBox(
-            height: 7.h,
-          ),
-          bottomUI(),
           SizedBox(
             height: 12.h,
           ),

@@ -65,17 +65,17 @@ class _ProDrawerState extends State<ProDrawer> {
   }
 
   _openDrawer() => setState(() {
-    _xOffset = widget.xOffset;
-    _scaleFactor = 0.6;
-    _isDrawerOpen = true;
-  });
+        _xOffset = widget.xOffset;
+        _scaleFactor = 0.6;
+        _isDrawerOpen = true;
+      });
 
   _closeDrawer() => setState(() {
-    _xOffset = 0;
-    _yOffset = 0;
-    _scaleFactor = 1.0;
-    _isDrawerOpen = false;
-  });
+        _xOffset = 0;
+        _yOffset = 0;
+        _scaleFactor = 1.0;
+        _isDrawerOpen = false;
+      });
 
   toggle() {
     _isDrawerOpen ? _closeDrawer() : _openDrawer();
@@ -87,19 +87,29 @@ class _ProDrawerState extends State<ProDrawer> {
       color: widget.drawerBackgroundColor ?? Theme.of(context).primaryColor,
       child: Stack(
         children: [
-          Container(
+          SizedBox(
             width: _xOffset,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (widget.drawerHeader != null)
-                  Visibility(child: SizedBox(child: widget.drawerHeader!, width: double.infinity,), visible: _isDrawerOpen,),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: widget.drawerBody,
+                  Visibility(
+                    child: SizedBox(
+                      child: widget.drawerHeader!,
+                      width: double.infinity,
+                    ),
+                    visible: _isDrawerOpen,
+                  ),
+                Visibility(
+                  visible: _isDrawerOpen,
+                  child: Expanded(
+                    child: SingleChildScrollView(
+                      child: widget.drawerBody,
+                    ),
                   ),
                 ),
-                if (widget.footer != null) widget.footer!
+                if (widget.footer != null)
+                  Visibility(visible: _isDrawerOpen, child: widget.footer!)
               ],
             ),
           ),
@@ -191,7 +201,7 @@ class _ProDrawerState extends State<ProDrawer> {
   }
 
   setPage(DrawerMenu item) => setState(() {
-    toggle();
-    _body = item.screen!;
-  });
+        toggle();
+        _body = item.screen!;
+      });
 }

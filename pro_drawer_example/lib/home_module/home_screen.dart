@@ -23,29 +23,11 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      color: const Color(0xfff6f6f6),
-                      padding: EdgeInsets.all(20.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          getTopCircleView(
-                              "Flash deal", "assets/icons/ic_flash_deal.svg"),
-                          getTopCircleView(
-                              "Today offers", "assets/icons/star_8.svg"),
-                          getTopCircleView(
-                              "Top brands", "assets/icons/group_34153.svg"),
-                          getTopCircleView(
-                              "Best sellers", "assets/icons/group_34154.svg"),
-                          getTopCircleView(
-                              "Gift Card", "assets/icons/group_34155.svg"),
-                        ],
-                      ),
-                    ),
-                    Container(
+                      width: double.infinity,
                       height: 150.h,
                       color: Colors.amber,
+                      child: const Center(child: Text("I am a slider")),
                     ),
-                    HomeScreenFeaturedCategory(),
                     Container(
                       padding: EdgeInsets.only(
                         left: 15.2,
@@ -75,7 +57,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-
     );
   }
 
